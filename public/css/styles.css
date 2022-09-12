@@ -1,0 +1,25 @@
+.yes {
+    background-color: lightgreen;
+}
+
+.no {
+    background-color: yellow;
+}
+
+.readonly {
+    pointer-events: none;
+}
+
+.form-group .margin{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.products {
+    display: flex;
+    justify-content: space-evenly;
+}
+.card {
+    overflow: hidden;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
