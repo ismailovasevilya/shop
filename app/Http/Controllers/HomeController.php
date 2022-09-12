@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\User;
+
 class HomeController extends Controller
 {
     /**
@@ -13,7 +15,14 @@ class HomeController extends Controller
      */
     public function __construct()
     {
+        $this->middleware('isAdmin');
         $this->middleware('auth');
+    }
+
+    public function index()
+    {
+        $users = User::where('role', 'user')->paginate(8);
+        return view('admin.index', ['users' => $users]);
     }
 
     /**
@@ -21,8 +30,5 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
-        return view('home');
-    }
+   
 }

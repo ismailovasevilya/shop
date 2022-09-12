@@ -1,8 +1,13 @@
-<div class="col-sm-2">
-  <nav class="nav flex-column">
+
+<li class="nav-item">
     <a class="nav-link" href="#">Category 1</a>
+</li>
+<li class="nav-item">
     <a class="nav-link" href="#">Category 2</a>
+</li>
+<li class="nav-item">
     <a class="nav-link" href="#">Category 3</a>
+</li>
+<li class="nav-item">
     <a class="nav-link" href="#">Category 4</a>
-  </nav>
-</div>
+</li>
