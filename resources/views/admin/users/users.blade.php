@@ -23,7 +23,7 @@
             <h4 class="text-center mt-4">You have no users</h4>
         @endif
 
-        <a href="">Create user</a>
+        <a href="{{ route('createUser') }}">Create user</a>
         {{-- <div class="pagination-links">
             {{ $users->links() }}
         </div> --}}

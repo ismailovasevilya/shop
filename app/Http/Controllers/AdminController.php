@@ -37,6 +37,13 @@ class AdminController extends Controller
     }
 
     public function updateUser($id, Request $req) {
+        
+        $validated = $req->validate([
+            'name' => 'string|nullable|max:255',
+            'email' => 'string|nullable|email|max:255|unique:users',
+        ]);
+
+
         $user = User::findOrFail($id);
         $user['name'] = $req->input('name') ? $req->input('name') : $user['name'] ;
         $user['email'] = $req->input('email') ? $req->input('email') : $user['email'];
@@ -45,4 +52,6 @@ class AdminController extends Controller
         return back()
                 ->with('msg', 'User has been edited successfully');
     }
+
+    
 }

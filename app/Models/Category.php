@@ -9,9 +9,18 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'description', 'slug'];
 
     public function products() {
         return $this->hasMany('App\Models\Product');
+    }
+    
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
     }
 }
