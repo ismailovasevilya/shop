@@ -105,7 +105,7 @@ class ProductController extends Controller
         }
 
         return redirect()
-                ->route('products_in_category', [
+                ->route('admin_products_in_category', [
                     'slug' => $category->slug 
                 ] )
                 ->with('msg', 'Item has edited successfully');

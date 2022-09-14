@@ -1,6 +1,9 @@
 @extends('layouts.master')
 
 @section('content')
+@foreach($categories as $category)
+            <h1>he</h1>
+            @endforeach
     <div class="col-sm-8">
         <div class="products">
             <div class="card" style="width: 16rem; height: 31rem;">

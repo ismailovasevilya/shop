@@ -12,7 +12,10 @@
 <body>
     <div class="container-fluid">
         <div class="container">
-            @include('navs.nav')
+            
+            {{-- <h1>{{ $categories->count()}}</h1> --}}
+           
+            @include('navs.nav', ['categories'=>$categories])
         </div>
         <div class="row justify-content-md-center">
             {{-- @include('navs.navbar') --}}

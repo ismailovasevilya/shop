@@ -17,8 +17,14 @@ use Illuminate\Support\Facades\Route;
 //     return view('layouts.master');
 // });
 Route::get('/', 'App\Http\Controllers\ShopController@getContent')->name('getContent');
+Route::get('/category/{slug}', 'App\Http\Controllers\CategoryController@products_in_category')->name('products_in_category');
+
+
+
+
 
 Route::get('/admin', 'App\Http\Controllers\HomeController@index')->name('admin');
+
 
 Route::get('/admin/users', 'App\Http\Controllers\AdminController@getUsers')->name('getUsers');
 Route::get('/admin/user/{id}/delete', 'App\Http\Controllers\AdminController@deleteUser')->name('deleteUser');
@@ -35,7 +41,7 @@ Route::post('/admin/categories/add', 'App\Http\Controllers\CategoryController@ad
 Route::get('/admin/category/{id}/delete', 'App\Http\Controllers\CategoryController@deleteCategory')->name('deleteCategory');
 Route::get('/admin/category/{slug}/edit', 'App\Http\Controllers\CategoryController@editCategory')->name('editCategory');
 Route::post('/admin/category/{slug}/update', 'App\Http\Controllers\CategoryController@updateCategory')->name('updateCategory');
-Route::get('/admin/category/{slug}', 'App\Http\Controllers\CategoryController@products_in_category')->name('products_in_category');
+Route::get('/admin/category/{slug}', 'App\Http\Controllers\CategoryController@products_in_category')->name('admin_products_in_category');
 
 
 Route::get('/admin/product', 'App\Http\Controllers\ProductController@getProducts')->name('getProducts');

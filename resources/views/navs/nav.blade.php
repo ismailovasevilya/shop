@@ -27,12 +27,12 @@
         </ul>
         @else
             <ul class="nav nav-pills nav-fill">
-                @include('navs.navbar')
+                @include('navs.navbar', ['categories'=>$categories])
             </ul>
         
     @endif
 
-    @guest
+    @if (!auth()->check())
         <ul class="nav justify-content-end">
             <li class="nav-item">
                 <a class="nav-link" href="/login">
@@ -58,6 +58,6 @@
                 @csrf
             </form>
         </ul>
-    @endguest
+    @endif
 
 
