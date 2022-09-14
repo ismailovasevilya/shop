@@ -16,7 +16,7 @@
                 @foreach ($categories as $category)
                     <tr>
                         <th scope="row">{{ $category->id }}</th>
-                        <td>{{ $category->name }}</td>
+                        <td><a href="{{ route('products_in_category', ['slug' => $category->slug ]) }}">{{ $category->name }}</a></td>
                         <td>{{ $category->description }}</td>
                         <td>
                             <a class="float-right" href="{{ route('editCategory', ['slug' => $category->slug]) }}">

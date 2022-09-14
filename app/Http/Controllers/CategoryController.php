@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Product;
+
 
 class CategoryController extends Controller
 {
@@ -73,6 +75,15 @@ class CategoryController extends Controller
         return redirect()
                 ->route('getCategories')
                 ->with('msg', 'Category has been edited successfully'); 
+    }
+
+    public function products_in_category($slug) {
+        $category = Category::where('slug', $slug)->first();
+        $products = Product::where('category_id',$category->id )->get();
+        return view('content.products', [
+            'products' => $products,
+            'num' => $products->count()
+        ]);
     }
 
 

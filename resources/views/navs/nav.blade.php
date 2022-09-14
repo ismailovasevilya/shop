@@ -9,7 +9,7 @@
                 <a class="nav-link" href="{{ route('getCategories') }}">Categories</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Products</a>
+                <a class="nav-link" href="{{ route('getProducts') }}">Products</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link">Orders</a>
