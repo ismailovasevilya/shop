@@ -17,13 +17,14 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('isAdmin');
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     public function index()
     {
-        $users = User::where('role', 'user')->paginate(8);
-        return view('admin.index', ['users' => $users]);
+         $categories = Category::all();
+        // $users = User::where('role', 'user')->paginate(8);
+        return view('admin.index', ['categories' => $categories]);
     }
 
     /**

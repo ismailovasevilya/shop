@@ -44,7 +44,7 @@ Route::post('/admin/category/{slug}/update', 'App\Http\Controllers\CategoryContr
 Route::get('/admin/category/{slug}', 'App\Http\Controllers\CategoryController@products_in_category')->name('admin_products_in_category');
 
 
-Route::get('/admin/product', 'App\Http\Controllers\ProductController@getProducts')->name('getProducts');
+Route::get('/admin/product', 'App\Http\Controllers\ShopController@getContent')->name('getContent');
 Route::get('/admin/product/add', 'App\Http\Controllers\ProductController@addProduct')->name('addProduct');
 Route::post('/admin/product/create', 'App\Http\Controllers\ProductController@createProduct')->name('createProduct');
 Route::get('/admin/product/{slug}/edit', 'App\Http\Controllers\ProductController@editProduct')->name('editProduct');

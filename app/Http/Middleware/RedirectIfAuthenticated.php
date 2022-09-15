@@ -17,35 +17,35 @@ class RedirectIfAuthenticated
      * @param  string|null  ...$guards
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next, ...$guards)
-    {
-        $guards = empty($guards) ? [null] : $guards;
-
-        foreach ($guards as $guard) {
-            if (Auth::guard($guard)->check()) {
-                if( Auth()->user()->isAdmin() )
-                {
-                    return redirect(RouteServiceProvider::ADMIN);
-                }
-                return redirect(RouteServiceProvider::HOME);
-            }
-        }
-
-        return $next($request);
-    }
-    // public function handle($request, Closure $next, $guard = null)
+    // public function handle(Request $request, Closure $next, ...$guards)
     // {
-    //     if (Auth::guard($guard)->check()) {
+    //     $guards = empty($guards) ? [null] : $guards;
 
-    //         if( Auth()->user()->isAdmin() )
-    //         {
-    //             return redirect(RouteServiceProvider::ADMIN);
+    //     foreach ($guards as $guard) {
+    //         if (Auth::guard($guard)->check()) {
+    //             if( Auth()->user()->isAdmin() )
+    //             {
+    //                 return redirect(RouteServiceProvider::ADMIN);
+    //             }
+    //             return redirect(RouteServiceProvider::HOME);
     //         }
-
-            
-    //         return redirect(RouteServiceProvider::HOME);
     //     }
 
     //     return $next($request);
     // }
+    public function handle($request, Closure $next, $guard = null)
+    {
+        if (Auth::guard($guard)->check()) {
+
+            if( Auth()->user()->isAdmin() )
+            {
+                return redirect(RouteServiceProvider::ADMIN);
+            }
+
+            
+            return redirect(RouteServiceProvider::HOME);
+        }
+
+        return $next($request);
+    }
 }

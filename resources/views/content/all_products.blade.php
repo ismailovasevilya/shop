@@ -1,7 +1,6 @@
 @extends('layouts.master', ['categories' => $categories])
 @section('content')
     <div class="col-sm-8">
-        <h2>{{ $category->name }}</h2>
         <div class="products">
             @foreach ($products as $product)
                 <div class="card" style="width: 16rem; height: 31rem;">
@@ -27,9 +26,5 @@
                 </div>
             @endforeach
         </div>
-        <div style="color: #bb192e" class="pagination-links">
-		    {{ $products->links() }}
-	    </div>
     </div>
 @endsection
-

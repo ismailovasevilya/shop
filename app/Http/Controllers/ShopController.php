@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Models\Category;
+use App\Models\Product;
 
 
 class ShopController extends Controller
@@ -14,8 +16,11 @@ class ShopController extends Controller
     // }
 
     public function getContent() {
+        $products = Product::orderBy('created_at', 'DESC')->limit(10)->get();
         $categories = Category::all();
-        return view('layouts.master', ['categories' => $categories]);
-        
+        return view('content.all_products', [
+            'categories' => $categories,
+            'products' => $products
+        ]);
     }
 }

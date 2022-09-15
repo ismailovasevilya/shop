@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-  <div class="container mt-5" style="margin-bottom: 200px">
+  {{-- <div class="container mt-5" style="margin-bottom: 200px">
     @if(count($users) > 0)
     <h4 class="text-center mt-4">All users</h4>
     <ul class="list-group">
@@ -21,7 +21,7 @@
       <h4 class="text-center mt-4">You have no users</h4>
     @endif
     <div class="pagination-links">
-      {{ $users->links() }}
+      {{ $users->links() }} --}}
   </div>
   </div>
 @endsection

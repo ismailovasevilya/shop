@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\User;
+use App\Models\Category;
 
 class AdminController extends Controller
 {
@@ -17,7 +18,8 @@ class AdminController extends Controller
     public function getUsers() {
         $users = User::all();
         return view('admin.users.users', [
-            'users' => $users
+            'users' => $users,
+            'categories' => Category::all()
         ]);
     }
 
@@ -32,7 +34,8 @@ class AdminController extends Controller
     public function getUser($id) {
         $user = User::findOrFail($id);
         return view('admin.users.edit_user', [
-            'user' => $user
+            'user' => $user,
+            'categories' => Category::all()
         ]);
     }
 
@@ -49,8 +52,9 @@ class AdminController extends Controller
         $user['email'] = $req->input('email') ? $req->input('email') : $user['email'];
         $user['role'] = $req->input('role') ? $req->input('role') : $user['role'];
         $user->update();
-        return back()
-                ->with('msg', 'User has been edited successfully');
+        return redirect()
+                ->route('getUsers')
+                ->with('msg', 'User has been deleted successfully');
     }
 
     

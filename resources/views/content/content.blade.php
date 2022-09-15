@@ -1,7 +1,9 @@
 @extends('layouts.master')
 
 @section('content')
-@foreach($categories as $category)
+
+
+{{-- @foreach($categories as $category)
             <h1>he</h1>
             @endforeach
     <div class="col-sm-8">
@@ -48,4 +50,4 @@
             </div>
         </div>
     </div>
-@endsection
+@endsection --}}

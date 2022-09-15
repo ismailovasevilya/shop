@@ -12,8 +12,8 @@ use App\Models\Product;
 class CategoryController extends Controller
 {
     public function __construct() {
-        $this->middleware('isAdmin');
-        $this->middleware('auth');
+        // $this->middleware('isAdmin');
+        // $this->middleware('auth');
     }
 
     public function getCategories() {
@@ -78,11 +78,15 @@ class CategoryController extends Controller
     }
 
     public function products_in_category($slug) {
+        $categories = Category::all();
         $category = Category::where('slug', $slug)->first();
-        $products = Product::where('category_id',$category->id )->get();
+        $products = Product::where('category_id',$category->id )->orderBy('created_at', 'DESC')->paginate(2);
+        // $products->withPath('custom/url');
         return view('content.products', [
             'products' => $products,
-            'num' => $products->count()
+            'category' => $category,
+            'num' => $products->count(),
+            'categories' => $categories
         ]);
     }
 

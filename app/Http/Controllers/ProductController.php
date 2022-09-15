@@ -9,8 +9,12 @@ use App\Models\Category;
 class ProductController extends Controller
 {
     public function getProducts() {
-        $products = Product::all();
-        return view('admin.products.all_products');
+        $products = Product::orderBy('created_at', 'DESC')->limit(10)->get();
+        $categories = Category::all();
+        return view('content.all_products', [
+            'categories' => $categories,
+            'products' => $products
+        ]);
     }
     
     public function addProduct() {
