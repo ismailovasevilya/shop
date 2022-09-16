@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 // });
 Route::get('/', 'App\Http\Controllers\ShopController@getContent')->name('getContent');
 Route::get('/category/{slug}', 'App\Http\Controllers\CategoryController@products_in_category')->name('products_in_category');
+Route::post('/order/{id}', 'App\Http\Controllers\OrderController@order')->name('order');
+Route::get('/cart/{id}', 'App\Http\Controllers\CartController@cart')->name('cart');
 
 
 

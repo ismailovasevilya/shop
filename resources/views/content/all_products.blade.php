@@ -19,8 +19,11 @@
                             <a class="editBtn" href="{{ route('editProduct', ['slug' => $product->slug]) }}">
                                 <i class="fas fa-lg fa-edit"></i>
                             </a>
-                        {{-- @else
-                            <a class="btnCategory" href="{{ route('order', ['id' => $product->id]) }}">Order</a> --}}
+                        @else
+                            <form id="postForm" action="{{ route('order', ['id' => ['id' => $product->id]]) }}" method="post">
+                                @csrf
+                                <input type="submit" value="Order">
+                            </form>
                         @endif
                     </div>
                 </div>

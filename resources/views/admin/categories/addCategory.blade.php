@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.master', ['categories' => $categories])
 @section('content')
     <div class="container">
         <div class="row mb-3">

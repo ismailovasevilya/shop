@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->integer('product_id');
-            $table->string('product_name');
             $table->integer('product_number');
-            $table->float('product_price');
-            $table->boolean('received')->default(false);
-            $table->integer('user_id');
+            $table->bigInteger('product_price');
+            $table->string('product_title');
+            $table->bigInteger('tot_price');
+            $table->bigInteger('user_id');
             $table->timestamps();
         });
     }

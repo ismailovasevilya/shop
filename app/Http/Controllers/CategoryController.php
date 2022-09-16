@@ -24,7 +24,10 @@ class CategoryController extends Controller
     }
 
     public function openNewCategory() {
-        return view('admin.categories.addCategory');
+        $categories = Category::all();
+        return view('admin.categories.addCategory', [
+            'categories' => $categories
+        ]);
     }
 
     public function addCategory(Request $req) {
@@ -81,7 +84,6 @@ class CategoryController extends Controller
         $categories = Category::all();
         $category = Category::where('slug', $slug)->first();
         $products = Product::where('category_id',$category->id )->orderBy('created_at', 'DESC')->paginate(2);
-        // $products->withPath('custom/url');
         return view('content.products', [
             'products' => $products,
             'category' => $category,

@@ -47,18 +47,8 @@ class ProductController extends Controller
         $product->image  =  $imageName ? $imageName : null;
         $product->save();
 
-        // Product::create([
-        //     'name' => $req->name,
-        //     'description' => $req->description,
-        //     'price' => $req->price,
-        //     'image' => $imageName ? $imageName : null,
-        //     'category_id' => $req->category_id,
-        //     'slug' => $product->slug
-        // ]);
-        
-       
         return redirect()
-                ->route('getProducts')
+                ->route('getContent')
                 ->with('msg', 'Item has been added to menu successfully');
     }
 

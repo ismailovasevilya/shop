@@ -9,6 +9,11 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['product_id', 'product_name', 'product_number',
-                            'product_price', 'received', 'user_id' ] ;
+    protected $fillable = ['product_id', 'product_number', 'product_title',
+                            'product_price', 'tot_price', 'user_id'] ;
+
+    public function cart() {
+        return $this->belongsTo('App\Models\Cart');
+    }
+
 }
