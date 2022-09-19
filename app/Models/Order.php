@@ -9,11 +9,16 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['product_id', 'product_number', 'product_title',
-                            'product_price', 'tot_price', 'user_id'] ;
+    protected $fillable = ['address', 'phone_number', 
+                            'status', 'user_id', 'session_key', 
+                            'total_qty', 'total_price', 'address'] ;
 
-    public function cart() {
-        return $this->belongsTo('App\Models\Cart');
+    public function order_item() {
+        return $this->HasMany('App\Models\OrderItem');
+    }
+
+    public function user() {
+        return $this->belongsTo('App\Models\User');
     }
 
 }

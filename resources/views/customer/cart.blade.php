@@ -2,7 +2,7 @@
 
 
 @section('content')
-    @foreach ($orders as $order)
+    @foreach ($order_items as $order_item)
         <div class="card mb-3" style="width: 540px;">
             <div class="row g-0">
                 <div class="col-md-4">
@@ -10,17 +10,27 @@
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h5 class="card-title">{{ $order->product_title }}</h5>
-                        <p class="card-text">Price: {{ $order->product_price }} $</p>
-                        <p class="card-text">Price: {{ $order->tot_price }} $</p>
+                        <h5 class="card-title">{{ $order_item->product_title }}</h5>
+                        <p class="card-text">Price: {{ $order_item->product_price }} $</p>
+                        <p class="card-text">Price: {{ $order_item->tot_price }} $</p>
                         <div>
-                          <a href=""><i class="fa-regular fa-plus"></i></a>
-                          {{ $order->product_number }}
-                          <a href=""><i class="fa-solid fa-minus"></i></a>
+                            <p>
+                                <form action="{{ route('plus', ['order_id' => $order_item->id] ) }}" method="post">
+                                    @csrf
+                                    <button class=" btn btn-danger" type="submit"><i class="fa-regular fa-plus"></i></button>
+                                </form>
+                                {{ $order_item->product_number }}
+                                <form action="{{ route('minus', ['order_id' => $order_item->id] ) }}" method="post">
+                                    @csrf
+                                    <button class="btn btn-danger" type="submit"><i class="fa-solid fa-minus"></i></button>
+                                </form>
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     @endforeach
+    
+    <div><a href="{{ route('checkout_auth') }}">Checkout</a></div>
 @endsection

@@ -19,7 +19,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'App\Http\Controllers\ShopController@getContent')->name('getContent');
 Route::get('/category/{slug}', 'App\Http\Controllers\CategoryController@products_in_category')->name('products_in_category');
 Route::post('/order/{id}', 'App\Http\Controllers\OrderController@order')->name('order');
+Route::post('/order/{order_id}/add', 'App\Http\Controllers\CartController@plus')->name('plus');
+Route::post('/order/{order_id}/subtr', 'App\Http\Controllers\CartController@minus')->name('minus');
 Route::get('/cart/{id}', 'App\Http\Controllers\CartController@cart')->name('cart');
+Route::get('/checkout/auth', 'App\Http\Controllers\CartController@checkout_auth')->name('checkout_auth');
+Route::post('/checkout/main', 'App\Http\Controllers\CartController@checkout_main')->name('checkout_main');
 
 
 
@@ -52,9 +56,6 @@ Route::post('/admin/product/create', 'App\Http\Controllers\ProductController@cre
 Route::get('/admin/product/{slug}/edit', 'App\Http\Controllers\ProductController@editProduct')->name('editProduct');
 Route::post('/admin/product/{id}/update', 'App\Http\Controllers\ProductController@updateProduct')->name('updateProduct');
 Route::post('/admin/product/{id}/delete', 'App\Http\Controllers\ProductController@deleteProduct')->name('deleteProduct');
-
-
-
 
 
 Auth::routes();

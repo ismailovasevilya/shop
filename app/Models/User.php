@@ -52,5 +52,9 @@ class User extends Authenticatable
         return $this->role === self::ADMIN;    
     }
 
+    public function order() {
+        return $this->hasMany('App\Models\Order');
+    }
+
 
 }

@@ -15,15 +15,21 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->integer('product_id');
-            $table->integer('product_number');
-            $table->bigInteger('product_price');
-            $table->string('product_title');
-            $table->bigInteger('tot_price');
-            $table->bigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->integer('total_qty')->nullable();
+            $table->bigInteger('total_price')->nullable();
+            $table->string('phone_number');
+            $table->string('status')->default('awaiting');
+            $table->text('address')->nullable();
+            $table->string('session_key')->nullable();
             $table->timestamps();
+            $table->foreign('user_id')
+                    ->references('id')->on('users');
+            
         });
     }
+
+    
 
     /**
      * Reverse the migrations.

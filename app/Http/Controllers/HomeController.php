@@ -22,7 +22,7 @@ class HomeController extends Controller
 
     public function index()
     {
-         $categories = Category::all();
+        $categories = Category::all();
         // $users = User::where('role', 'user')->paginate(8);
         return view('admin.index', ['categories' => $categories]);
     }

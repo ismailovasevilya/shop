@@ -20,9 +20,9 @@
                                 <i class="fas fa-lg fa-edit"></i>
                             </a>
                         @else
-                            <form id="postForm" action="{{ route('order', ['id' => ['id' => $product->id]]) }}" method="post">
+                            <form id="postForm" action="{{ route('order', ['id' => $product->id]) }}" method="post">
                                 @csrf
-                                <input type="submit" value="Order">
+                                <input type="submit" value="Add to cart">
                             </form>
                         @endif
                     </div>

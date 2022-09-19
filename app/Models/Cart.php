@@ -9,9 +9,9 @@ class Cart extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['order_id', 'price', 'user_id'];
+    protected $fillable = ['price', 'user_id', 'session_key'];
 
-    public function orders() {
-        return $this->hasMany('App\Models\Orders');
+    public function order_items() {
+        return $this->hasMany('App\Models\OrderItem');
     }
 }
