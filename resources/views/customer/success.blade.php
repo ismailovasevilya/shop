@@ -1,0 +1,1 @@
+<h2 style="font-color:green;">Your order is accepted. Wait for confirmation.</h2>

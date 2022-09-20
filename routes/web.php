@@ -23,8 +23,13 @@ Route::post('/order/{order_id}/add', 'App\Http\Controllers\CartController@plus')
 Route::post('/order/{order_id}/subtr', 'App\Http\Controllers\CartController@minus')->name('minus');
 Route::get('/cart/{id}', 'App\Http\Controllers\CartController@cart')->name('cart');
 Route::get('/checkout/auth', 'App\Http\Controllers\CartController@checkout_auth')->name('checkout_auth');
-Route::post('/checkout/main', 'App\Http\Controllers\CartController@checkout_main')->name('checkout_main');
-
+Route::get('/checkout/auth/register', 'App\Http\Controllers\CartController@checkout_not_auth')->name('checkout_not_auth');
+Route::post('/checkout/main', 'App\Http\Controllers\CartController@checkout_main_auth')->name('checkout_main_auth');
+Route::get('/price/up', 'App\Http\Controllers\ShopController@priceUp')->name('priceUp');
+Route::get('/price/down', 'App\Http\Controllers\ShopController@priceDown')->name('priceDown');
+Route::get('/day/up', 'App\Http\Controllers\ShopController@dayUp')->name('dayUp');
+Route::get('/dat/down', 'App\Http\Controllers\ShopController@dayDown')->name('dayDown');
+Route::post('/order', 'App\Http\Controllers\OrderController@orders')->name('orders');
 
 
 

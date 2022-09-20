@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('product_number');
             $table->bigInteger('product_price');
             $table->string('product_title');
+            $table->string('user_email')->default('example@email.com');
             $table->bigInteger('tot_price');
             $table->bigInteger('user_id')->nullable();
             $table->string('session_key')->nullable();

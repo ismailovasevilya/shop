@@ -9,7 +9,7 @@ class OrderItem extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['product_id', 'product_number', 'product_title',
+    protected $fillable = ['product_id', 'product_number', 'product_title', 'user_email',
                             'product_price', 'tot_price', 'user_id', 'session_key', 'cart_id', 'order_id'] ;
 
     public function order() {
@@ -19,7 +19,6 @@ class OrderItem extends Model
     public function cart() {
         return $this->belongsTo('App\Models\Cart');
     }
-
-
+    
 }
 

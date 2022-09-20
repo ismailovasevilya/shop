@@ -20,6 +20,7 @@ return new class extends Migration
             $table->bigInteger('price');
             $table->string('image')->nullable();
             $table->string('slug')->unique();
+            $table->boolean('active')->default(true);
             $table->timestamps();
             $table->integer('category_id');
         });

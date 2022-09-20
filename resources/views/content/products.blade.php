@@ -1,7 +1,7 @@
 @extends('layouts.master', ['categories' => $categories])
 @section('content')
     <div class="col-sm-8">
-        <h2>{{ $category->name }}</h2>
+        {{-- <h2>{{ $category->name }}</h2> --}}
         <div class="products">
             @foreach ($products as $product)
                 <div class="card" style="width: 16rem; height: 31rem;">
@@ -23,7 +23,7 @@
                         @else    
                             <form id="postForm" action="{{ route('order', ['id' => $product->id]) }}" method="post">
                                 @csrf
-                                <input type="submit" value="Order">
+                                <input type="submit" value="Add to cart">
                             </form>
                         @endif
                     </div>
