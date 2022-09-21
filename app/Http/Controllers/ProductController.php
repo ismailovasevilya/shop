@@ -107,7 +107,7 @@ class ProductController extends Controller
 
     public function deleteProduct($id) {
         $product = Product::findOrFail($id);
-        $category->delete();
+        $product->delete();
         return back()
                 ->with('msg', 'Item has edited successfully');
     }

@@ -9,7 +9,7 @@
                     </div>
                 </div>
                 <ul class="list-group">
-                    @foreach($orders as $order)
+                    
                         <table class="table table-borderless">    
                             <thead>
                                 <tr>
@@ -23,26 +23,31 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                
-                                    <tr >
-                                        <td rowspan="2" scope="row">{{ $order->id  }}</td>
-                                        <td rowspan="2" scope="row">{{ $order->user->name  }}</td>
-                                        <td rowspan="2" scope="row">{{ $order->user->email  }}</td>
-                                        <td rowspan="2" scope="row">{{ $order->phone_number }}</td>
-                                        @foreach($order->order_items as $order_item)
-                                            
-                                                <td scope="row">{{ $order_item->product_title }} : {{ $order_item->product_number }}</td>
-                                                <td scope="row">123</td>
-                                                <td scope="row">accept</td>
-                                            
+                                @foreach($orders as $order)
+                                    <tr>
+                                        <td style="vertical-align: center" scope="row">{{ $order->id  }}</td>
+                                        <td style="vertical-align: center" scope="row">{{ $order->user->name  }}</td>
+                                        <td style="vertical-align: center" scope="row">{{ $order->user->email  }}</td>
+                                        <td style="vertical-align: center" scope="row">{{ $order->phone_number }}</td>
+                                        <td style="vertical-align: center" scope="row">
+                                        @foreach($order->order_items as $order_item)        
+                                                {{ $order_item->product_title }} : {{ $order_item->product_number }}<br>        
                                         @endforeach
+                                        </td>
+                                        <td style="vertical-align: center" scope="row">{{ $order->total_price }}</td>
+                                        <td style="vertical-align: center" scope="row">
+                                            <form action="{{ route('accept', $order->id) }}" method="post">
+                                                @csrf
+                                                <button class="btn btn-{{ $order->status=='accepted' ? 'success' : '' }}">{{ $order->status=='accepted' ? 'Accepted' : 'Accept' }}</button>
+                                            </form>
+                                        </td>
                                     </tr>
-                                
+                                    @endforeach
                             </tbody>
                         </table>
                         {{-- @if($order->recived) --}}
                         
-                    @endforeach
+                    
                 </ul>
                 {{-- <div class="pagination-links">
                     {{ $orders->links() }}

@@ -70,7 +70,7 @@ class CartController extends Controller
                 $tot_qty = $tot_qty + $order_item->product_number;
                 $order_item->user_id = auth()->user()->id;
             }
-            if (count(Order::where('session_key',Session::getId())->get) == 0) {
+            if (count(Order::where('session_key',Session::getId())->get()) == 0) {
                 $order = new Order;
                 $order->user_id = auth()->user()->id;
                 $order->total_qty = $tot_qty;

@@ -1,5 +1,6 @@
 @extends('layouts.master', ['categories' => $categories])
 @section('content')
+
     <div class="col-sm-8">
         <div class="products">
             @foreach ($products as $product)
@@ -14,7 +15,7 @@
                         @if (auth()->check() &&
                             auth()->user()->isAdmin())
                             <a class="deleteBtn mr-4" href="{{ route('deleteProduct', ['id' => $product->id]) }}">
-                                <i class="far fa-lg fa-trash"></i>
+                                <i class="fas fa-lg fa-trash"></i>
                             </a>
                             <a class="editBtn" href="{{ route('editProduct', ['slug' => $product->slug]) }}">
                                 <i class="fas fa-lg fa-edit"></i>

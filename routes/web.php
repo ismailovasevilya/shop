@@ -60,8 +60,9 @@ Route::get('/admin/product/add', 'App\Http\Controllers\ProductController@addProd
 Route::post('/admin/product/create', 'App\Http\Controllers\ProductController@createProduct')->name('createProduct');
 Route::get('/admin/product/{slug}/edit', 'App\Http\Controllers\ProductController@editProduct')->name('editProduct');
 Route::post('/admin/product/{id}/update', 'App\Http\Controllers\ProductController@updateProduct')->name('updateProduct');
-Route::post('/admin/product/{id}/delete', 'App\Http\Controllers\ProductController@deleteProduct')->name('deleteProduct');
+Route::get('/admin/product/{id}/delete', 'App\Http\Controllers\ProductController@deleteProduct')->name('deleteProduct');
 Route::get('/admin/orders', 'App\Http\Controllers\OrderController@adminOrder')->name('adminOrder');
+Route::post('admin/orders/{id}', 'App\Http\Controllers\OrderController@accept')->name('accept');
 
 
 

@@ -41,21 +41,32 @@ class OrderController extends Controller
 
 
     public function orders() {
-        $cart = Cart::where('user_id', auth()->user()->id)->first();
-        if ($cart) {
-            $cart->delete();
+        if (auth()->check()){
+            $cart = Cart::where('user_id', auth()->user()->id)->first();
+            if ($cart) {
+                $cart->delete();
+            }
+        
+            $orders_item = OrderItem::where('user_email', auth()->user()->email)->get();
+            if (count(Order::where('user_id', auth()->user()->id)->get()) > 0) {
+                $orders = Order::where('user_id', auth()->user()->id)->first();
+                foreach ($orders_item as $order_item) {
+                    $order_item->order_id = $orders->id;
+                    $order_item->update();
+                }
+                return view('customer.orders',[
+                    'orders_item' => $orders_item,
+                    'orders' => $orders,
+                    'categories' => Category::all()
+                ]);
+            }
+            else {
+                return back()->with('msg', 'You have not made an order yet');
+            }
         }
-        $orders_item = OrderItem::where('user_email', auth()->user()->email)->get();
-        $orders = Order::where('user_id', auth()->user()->id)->where('session_key', Session::getId())->first();
-        foreach ($orders_item as $order_item) {
-            $order_item->order_id = $orders->id;
-            $order_item->update();
+        else {
+            return back()->with('msg', 'please, login first');
         }
-        return view('customer.orders',[
-            'orders_item' => $orders_item,
-            'orders' => $orders,
-            'categories' => Category::all()
-        ]);
     }
 
     public function adminOrder() {
@@ -64,6 +75,13 @@ class OrderController extends Controller
             'orders'=>$orders,
             'categories' => Category::all()
         ]);
+    }
+
+    public function accept($id) {
+        $order = Order::findOrFail($id);
+        $order->status = 'accepted';
+        $order->update();
+        return back();
     }
 
     
