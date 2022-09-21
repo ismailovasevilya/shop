@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Product;
 
 class HomeController extends Controller
 {
@@ -23,8 +24,11 @@ class HomeController extends Controller
     public function index()
     {
         $categories = Category::all();
-        // $users = User::where('role', 'user')->paginate(8);
-        return view('admin.index', ['categories' => $categories]);
+        $products = Product::orderBy('created_at', 'DESC')->paginate(10);
+        return view('content.products', [
+            'categories' => $categories,
+            'products' => $products 
+        ]);
     }
 
     /**

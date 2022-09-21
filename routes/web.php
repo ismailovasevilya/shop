@@ -29,7 +29,7 @@ Route::get('/price/up', 'App\Http\Controllers\ShopController@priceUp')->name('pr
 Route::get('/price/down', 'App\Http\Controllers\ShopController@priceDown')->name('priceDown');
 Route::get('/day/up', 'App\Http\Controllers\ShopController@dayUp')->name('dayUp');
 Route::get('/dat/down', 'App\Http\Controllers\ShopController@dayDown')->name('dayDown');
-Route::post('/order', 'App\Http\Controllers\OrderController@orders')->name('orders');
+Route::get('/orders', 'App\Http\Controllers\OrderController@orders')->name('orders');
 
 
 
@@ -55,12 +55,14 @@ Route::post('/admin/category/{slug}/update', 'App\Http\Controllers\CategoryContr
 Route::get('/admin/category/{slug}', 'App\Http\Controllers\CategoryController@products_in_category')->name('admin_products_in_category');
 
 
-Route::get('/admin/product', 'App\Http\Controllers\ShopController@getContent')->name('getContent');
+Route::get('/admin/product', 'App\Http\Controllers\HomeController@index')->name('admin');
 Route::get('/admin/product/add', 'App\Http\Controllers\ProductController@addProduct')->name('addProduct');
 Route::post('/admin/product/create', 'App\Http\Controllers\ProductController@createProduct')->name('createProduct');
 Route::get('/admin/product/{slug}/edit', 'App\Http\Controllers\ProductController@editProduct')->name('editProduct');
 Route::post('/admin/product/{id}/update', 'App\Http\Controllers\ProductController@updateProduct')->name('updateProduct');
 Route::post('/admin/product/{id}/delete', 'App\Http\Controllers\ProductController@deleteProduct')->name('deleteProduct');
+Route::get('/admin/orders', 'App\Http\Controllers\OrderController@adminOrder')->name('adminOrder');
+
 
 
 Auth::routes();

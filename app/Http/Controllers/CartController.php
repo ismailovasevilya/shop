@@ -22,14 +22,10 @@ class CartController extends Controller
             $order_items = OrderItem::where('user_email', auth()->user()->email)->orWhere('user_id', $id)->get();
         } else {
             $order_items = OrderItem::where('session_key',Session::getId())->get();
-
-            // $order_items = OrderItem::where('session_key', $req->session()->get('key'))->get();
         }
-        // $cart = Cart::where('session_key', $req->session()->get('key'))->first();
         return view('customer.cart', [
             'order_items' => $order_items,
             'categories' => Category::all(),
-            // 'cart' => $cart
         ]); 
     }
 
@@ -74,14 +70,16 @@ class CartController extends Controller
                 $tot_qty = $tot_qty + $order_item->product_number;
                 $order_item->user_id = auth()->user()->id;
             }
-            $order = new Order;
-            $order->user_id = auth()->user()->id;
-            $order->total_qty = $tot_qty;
-            $order->total_price = $tot_price;
-            $order->phone_number = $req->phone_number;
-            $order->address = $req->address;
-            $order->session_key = Session::getId();
-            $order->save();
+            if (count(Order::where('session_key',Session::getId())->get) == 0) {
+                $order = new Order;
+                $order->user_id = auth()->user()->id;
+                $order->total_qty = $tot_qty;
+                $order->total_price = $tot_price;
+                $order->phone_number = $req->phone_number;
+                $order->address = $req->address;
+                $order->session_key = Session::getId();
+                $order->save();
+            }
             return view('customer.success');
             
         } elseif (!auth()->check()) {

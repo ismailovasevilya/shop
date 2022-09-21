@@ -10,39 +10,63 @@ use App\Models\Order;
 use App\Models\User;
 use App\Models\OrderItem;
 use App\Models\Cart;
+use App\Models\Category;
 use Session;
 
 
 class OrderController extends Controller
-{
-
-    
-    
+{ 
     public function order($id, Request $req) {
         $product = Product::findOrFail($id);
         $cart = Cart::where('session_key',Session::getId())->first();
-        $order_item = new OrderItem;
-        $order_item->session_key = Session::getId();
-        $order_item->product_id = $product->id;
-        $order_item->product_price = $product->price;
-        $order_item->product_title = $product->name;
-        $order_item->product_number = 1;
-        $order_item->tot_price = $product->price;
-        $order_item->cart_id = $cart->id;
-        if(auth()->check()){
-            $order_item->user_id = auth()->user()->id;
+        if (count(OrderItem::where('session_key',Session::getId())->where('product_id', $id)->get()) == 0) {
+            $order_item = new OrderItem;
+            $order_item->session_key = Session::getId();
+            $order_item->product_id = $product->id;
+            $order_item->product_price = $product->price;
+            $order_item->product_title = $product->name;
+            $order_item->product_number = 1;
+            $order_item->tot_price = $product->price;
+            $order_item->cart_id = $cart->id;
+            if(auth()->check()){
+                $order_item->user_id = auth()->user()->id;
         }
         $order_item->save();
-       
+        } else {
+            //message
+        }
+      
         return back();
     }
 
 
     public function orders() {
-        $cart = Cart::where(Cart::where('user_id', auth()->user()->email))->first();
-        $cart->delete();
-        return view('customer.success');
+        $cart = Cart::where('user_id', auth()->user()->id)->first();
+        if ($cart) {
+            $cart->delete();
+        }
+        $orders_item = OrderItem::where('user_email', auth()->user()->email)->get();
+        $orders = Order::where('user_id', auth()->user()->id)->where('session_key', Session::getId())->first();
+        foreach ($orders_item as $order_item) {
+            $order_item->order_id = $orders->id;
+            $order_item->update();
+        }
+        return view('customer.orders',[
+            'orders_item' => $orders_item,
+            'orders' => $orders,
+            'categories' => Category::all()
+        ]);
     }
+
+    public function adminOrder() {
+        $orders = Order::all();
+        return view('admin.orders.orders', [
+            'orders'=>$orders,
+            'categories' => Category::all()
+        ]);
+    }
+
+    
 
     
 }

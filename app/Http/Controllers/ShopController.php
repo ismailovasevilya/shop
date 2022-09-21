@@ -43,10 +43,20 @@ class ShopController extends Controller
     
         $products = Product::orderBy('created_at', 'DESC')->paginate(10);
         $categories = Category::all();
-        return view('content.products', [
+
+        if (auth()->check() && auth()->user()->isAdmin()) {
+            return redirect()->route('admin', [
+                'categories' => $categories,
+                'products' => $products
+            ]);
+        }
+        else {
+            return view('content.products', [
             'categories' => $categories,
             'products' => $products
         ]);
+        }
+        
     }
 
     public function priceUp() {

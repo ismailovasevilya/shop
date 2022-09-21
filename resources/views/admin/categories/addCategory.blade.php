@@ -29,6 +29,13 @@
                 @enderror
             </div>
         </div>
+        <div class="form-group">
+            <label for="">Availability</label>
+            <select name="active" form="postForm" class="form-control">
+                <option name="active" value="1">Available</option>
+                <option name="active" value="0">Not available</option>
+            </select>
+        </div>
         <form id="postForm" action="{{ route('addCategory') }}" method="post">
             @csrf
             <input type="submit" value="Add">

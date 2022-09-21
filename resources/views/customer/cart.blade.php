@@ -15,12 +15,12 @@
                         <p class="card-text">Price: {{ $order_item->tot_price }} $</p>
                         <div>
                             <p>
-                                <form action="{{ route('plus', ['order_id' => $order_item->id] ) }}" method="post">
+                                <form class="inline" action="{{ route('plus', ['order_id' => $order_item->id] ) }}" method="post">
                                     @csrf
                                     <button class=" btn btn-danger" type="submit"><i class="fa-regular fa-plus"></i></button>
                                 </form>
                                 {{ $order_item->product_number }}
-                                <form action="{{ route('minus', ['order_id' => $order_item->id] ) }}" method="post">
+                                <form class="inline" action="{{ route('minus', ['order_id' => $order_item->id] ) }}" method="post">
                                     @csrf
                                     <button class="btn btn-danger" type="submit"><i class="fa-solid fa-minus"></i></button>
                                 </form>

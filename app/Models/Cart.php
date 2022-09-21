@@ -11,7 +11,7 @@ class Cart extends Model
 
     protected $fillable = ['price', 'user_id', 'session_key', 'user_email'];
 
-    public function order_items() {
-        return $this->hasMany('App\Models\OrderItem');
-    }
+    // public function order_items() {
+    //     return $this->hasMany('App\Models\OrderItem');
+    // }
 }

@@ -14,21 +14,23 @@
             </thead>
             <tbody>
                 @foreach ($categories as $category)
-                    <tr>
-                        <th scope="row">{{ $category->id }}</th>
-                        <td><a href="{{ route('admin_products_in_category', ['slug' => $category->slug ]) }}">{{ $category->name }}</a></td>
-                        <td>{{ $category->description }}</td>
-                        <td>
-                            <a class="float-right" href="{{ route('editCategory', ['slug' => $category->slug]) }}">
-                                <i class="fas fa-lg fa-edit"></i>
-                            </a>
-                        </td>
-                        <td>
-                            <a class="float-right" href="{{ route('deleteCategory', ['id' => $category->id]) }}">
-                                <i class="recived-trash-btn mt-1 far fa-lg fa-trash"></i>
-                            </a>
-                        </td>
-                    </tr>
+                    @if($category->active)
+                        <tr>
+                            <th scope="row">{{ $category->id }}</th>
+                            <td><a href="{{ route('admin_products_in_category', ['slug' => $category->slug ]) }}">{{ $category->name }}</a></td>
+                            <td>{{ $category->description }}</td>
+                            <td>
+                                <a class="float-right" href="{{ route('editCategory', ['slug' => $category->slug]) }}">
+                                    <i class="fas fa-lg fa-edit"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <a class="float-right" href="{{ route('deleteCategory', ['id' => $category->id]) }}">
+                                    <i class="recived-trash-btn mt-1 far fa-lg fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    @endif
                 @endforeach
             </tbody>
         </table>

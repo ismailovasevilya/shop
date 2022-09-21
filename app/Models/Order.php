@@ -13,7 +13,7 @@ class Order extends Model
                             'status', 'user_id', 'session_key', 
                             'total_qty', 'total_price', 'address'] ;
 
-    public function order_item() {
+    public function order_items() {
         return $this->HasMany('App\Models\OrderItem');
     }
 

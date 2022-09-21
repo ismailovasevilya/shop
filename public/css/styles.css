@@ -1,5 +1,15 @@
 @import url("https://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
 
+@font-face {
+    font-family: 'FontAwesome';
+    src: url('your/path/fontawesome-webfont.eot?v=3.0.1');
+    src: url('your/path/fontawesome-webfont.eot?#iefix&v=3.0.1') format('embedded-opentype'),
+        url('your/path/fontawesome-webfont.woff?v=3.0.1') format('woff'),
+        url('your/path/fontawesome-webfont.ttf?v=3.0.1') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .yes {
     background-color: lightgreen;
 }
@@ -36,4 +46,40 @@ li {
 a {
     font-size: 1.2rem;
     text-decoration: none
+}
+
+.inline {
+    display: inline-block;
+}
+
+.mrg {
+    margin-right: 15px;
+}
+
+.no-font {
+    border: 0;
+    border-radius: 0;
+    background: #fff;
+    padding: 0px;
+}
+.badge {
+    padding-left: 9px;
+    padding-right: 9px;
+    -webkit-border-radius: 9px;
+    -moz-border-radius: 9px;
+    border-radius: 9px;
+}
+
+.label-warning[href],
+.badge-warning[href] {
+    background-color: #c67605;
+}
+
+#lblCartCount {
+    font-size: 12px;
+    background: #ff0000;
+    color: #fff;
+    padding: 0 5px;
+    vertical-align: top;
+    margin-left: -10px;
 }
