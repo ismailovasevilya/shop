@@ -33,7 +33,7 @@ class OrderController extends Controller
         }
         $order_item->save();
         } else {
-            //message
+            return back()->with('msg', 'You have already added this product to the cart');
         }
       
         return back();
@@ -42,21 +42,24 @@ class OrderController extends Controller
 
     public function orders() {
         if (auth()->check()){
-            $cart = Cart::where('user_id', auth()->user()->id)->first();
-            if ($cart) {
-                $cart->delete();
-            }
-        
+            
             $orders_item = OrderItem::where('user_email', auth()->user()->email)->get();
             if (count(Order::where('user_id', auth()->user()->id)->get()) > 0) {
-                $orders = Order::where('user_id', auth()->user()->id)->first();
+                $orders = Order::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->first();
                 foreach ($orders_item as $order_item) {
                     $order_item->order_id = $orders->id;
                     $order_item->update();
                 }
+                $cart_order = 1;
+                $cart = Cart::where('user_id', auth()->user()->id)->first();
+                if ($cart) {
+                    $cart->delete();
+                }
+                
                 return view('customer.orders',[
                     'orders_item' => $orders_item,
                     'orders' => $orders,
+                    'cart_order' => $cart_order,
                     'categories' => Category::all()
                 ]);
             }

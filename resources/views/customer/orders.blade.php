@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('content')
 <div class="container">
-    @if(!$orders)
+    @if(!$orders || $cart_order==0)
     <div class="orders" style="margin: 200px">
         <h3 class="text-center">
             You have no orders
@@ -27,15 +27,16 @@
                             <br>
                         
                         </li>
-                    
-                @endforeach
-                <li style="color: black" class="list-group-item recived">
+                        <li style="color: black" class="list-group-item recived">
                         Status:
                         <span style="color: #bb192e" class="ml-2 mr-2">
                         {{ $orders->status }}
                         </span>   
                 </li>
                 <span style="color: black" class="mt-3">Overall Price: <strong>{{ $overallPrice }}</strong> $</span>
+                    
+                @endforeach
+                
             </ul>
         </div>
     </div>

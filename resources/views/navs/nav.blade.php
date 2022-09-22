@@ -1,3 +1,5 @@
+
+
 @if (auth()->check() &&
     auth()->user()->isAdmin())
     <ul class="nav nav-pills nav-fill">
@@ -8,7 +10,7 @@
             <a class="nav-link" href="{{ route('getCategories') }}">Categories</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('getContent') }}">Products</a>
+            <a class="nav-link" href="{{ route('admin') }}">Products</a>
         </li>
         <li class="nav-item">
             <a href="{{ route('adminOrder') }}" class="nav-link">Orders</a>
@@ -22,9 +24,6 @@
         </ul>
         <hr>
         <div>
-
-            
-
             <ul class="nav justify-content-end">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('orders') }}">Orders</a>
@@ -72,3 +71,5 @@
     </ul>
     </div>
     @endif
+
+    

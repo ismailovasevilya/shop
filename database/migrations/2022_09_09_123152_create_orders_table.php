@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('session_key')->nullable();
             $table->timestamps();
             $table->foreign('user_id')
-                    ->references('id')->on('users');
+                    ->references('id')->on('users')->onDelete('cascade');;
             
         });
     }

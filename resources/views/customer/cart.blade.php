@@ -2,6 +2,14 @@
 
 
 @section('content')
+    @if($cart_order==0 || count($order_items) == 0)
+    <div class="orders" style="margin: 200px">
+        <h3 class="text-center">
+            Your cart is empty
+        </h3>
+    </div>
+    @else
+
     @foreach ($order_items as $order_item)
         <div class="card mb-3" style="width: 540px;">
             <div class="row g-0">
@@ -32,5 +40,7 @@
         </div>
     @endforeach
     
+    
     <div><a href="{{ route('checkout_auth') }}">Checkout</a></div>
+    @endif
 @endsection

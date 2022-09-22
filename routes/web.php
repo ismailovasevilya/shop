@@ -29,6 +29,7 @@ Route::get('/price/up', 'App\Http\Controllers\ShopController@priceUp')->name('pr
 Route::get('/price/down', 'App\Http\Controllers\ShopController@priceDown')->name('priceDown');
 Route::get('/day/up', 'App\Http\Controllers\ShopController@dayUp')->name('dayUp');
 Route::get('/dat/down', 'App\Http\Controllers\ShopController@dayDown')->name('dayDown');
+Route::get('/categories', 'App\Http\Controllers\CategoryController@getCategoriess')->name('getCategoriess');
 Route::get('/orders', 'App\Http\Controllers\OrderController@orders')->name('orders');
 
 

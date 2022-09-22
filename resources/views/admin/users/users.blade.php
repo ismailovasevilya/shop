@@ -13,7 +13,7 @@
                             <i class="fas fa-lg fa-edit"></i>
                         </a>
                         <a class="float-right" href="{{ route('deleteUser', ['id' => $user->id]) }}">
-                            <i class="recived-trash-btn mt-1 far fa-lg fa-trash"></i>
+                            <i class="recived-trash-btn mt-1 fas fa-lg fa-trash"></i>
                         </a>
 
                     </li>

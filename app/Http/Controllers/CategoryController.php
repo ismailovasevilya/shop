@@ -12,13 +12,19 @@ use App\Models\Product;
 class CategoryController extends Controller
 {
     public function __construct() {
-        $this->middleware('isAdmin');
+        // $this->middleware('isAdmin');
         // $this->middleware('auth');
     }
 
     public function getCategories() {
         $categories = Category::all();
         return view('admin.categories.categories', [
+            'categories' => $categories
+        ]);
+    }
+    public function getCategoriess() {
+        $categories = Category::all();
+        return view('customer.categories', [
             'categories' => $categories
         ]);
     }
@@ -91,6 +97,5 @@ class CategoryController extends Controller
             'categories' => $categories
         ]);
     }
-
 
 }

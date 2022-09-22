@@ -19,12 +19,24 @@ class CartController extends Controller
     
     public function cart($id, Request $req) {
         if (auth()->check()) {
-            $order_items = OrderItem::where('user_email', auth()->user()->email)->orWhere('user_id', $id)->get();
+            $cart = Cart::where('user_email', auth()->user()->email)->first();
+            if($cart) {
+                $order_items = OrderItem::where('user_email',auth()->user()->email)->where('cart_id', $cart->id)->get();
+            } else {
+            $order_items = OrderItem::where('user_email',auth()->user()->email)->get();
+            }
+            
         } else {
             $order_items = OrderItem::where('session_key',Session::getId())->get();
         }
+        $cart_order = 1;
+        $order_cart = Order::where('session_key',Session::getId())->first();
+        if ($order_cart ) {
+            $cart_order = 0;
+        }
         return view('customer.cart', [
             'order_items' => $order_items,
+            'cart_order' => $cart_order,
             'categories' => Category::all(),
         ]); 
     }
