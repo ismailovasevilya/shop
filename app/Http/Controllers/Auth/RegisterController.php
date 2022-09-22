@@ -21,7 +21,7 @@ class RegisterController extends Controller
     | provide this functionality without requiring any additional code.
     |
     */
-  
+
     use RegistersUsers;
 
     /**
@@ -36,10 +36,10 @@ class RegisterController extends Controller
      *
      * @return void
      */
-    // public function __construct()
-    // {
-    //     $this->middleware('guest', ['except' => ['getLogout', 'create'] ]);
-    // }
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
 
     /**
      * Get a validator for an incoming registration request.
