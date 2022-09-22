@@ -103,7 +103,8 @@ class CartController extends Controller
             $cart = Cart::where('session_key', Session::getId())->first();
             $cart->user_email = $req->email;
             $cart->update();
-            return view('auth.register');
+            return redirect()->route('createUser');
+            // return view('auth.register');
         }   
     }
 

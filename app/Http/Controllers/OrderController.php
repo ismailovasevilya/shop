@@ -30,6 +30,7 @@ class OrderController extends Controller
             $order_item->cart_id = $cart->id;
             if(auth()->check()){
                 $order_item->user_id = auth()->user()->id;
+                $order_item->user_email = auth()->user()->email;
         }
         $order_item->save();
         } else {

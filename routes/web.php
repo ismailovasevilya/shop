@@ -42,7 +42,7 @@ Route::get('/admin/users', 'App\Http\Controllers\AdminController@getUsers')->nam
 Route::get('/admin/user/{id}/delete', 'App\Http\Controllers\AdminController@deleteUser')->name('deleteUser');
 Route::get('/admin/user/{id}/edit', 'App\Http\Controllers\AdminController@getUser')->name('getUser');
 Route::post('/admin/user/{id}/update', 'App\Http\Controllers\AdminController@updateUser')->name('updateUser');
-Route::get('/admin/create_user', function() {
+Route::get('/create_user', function() {
     return view('auth.register');
 })->name('createUser');
 
@@ -72,6 +72,6 @@ Auth::routes();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Auth::routes();
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

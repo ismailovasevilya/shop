@@ -89,7 +89,7 @@ class CategoryController extends Controller
     public function products_in_category($slug) {
         $categories = Category::all();
         $category = Category::where('slug', $slug)->first();
-        $products = Product::where('category_id',$category->id )->orderBy('created_at', 'DESC')->paginate(2);
+        $products = Product::where('category_id',$category->id )->orderBy('created_at', 'DESC')->paginate(10);
         return view('content.products', [
             'products' => $products,
             'category' => $category,
