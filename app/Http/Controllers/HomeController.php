@@ -25,7 +25,7 @@ class HomeController extends Controller
     {
         $categories = Category::all();
         $products = Product::orderBy('created_at', 'DESC')->paginate(10);
-        return view('content.products', [
+        return view('content.all_products', [
             'categories' => $categories,
             'products' => $products 
         ]);

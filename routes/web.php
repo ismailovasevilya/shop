@@ -31,6 +31,8 @@ Route::get('/day/up', 'App\Http\Controllers\ShopController@dayUp')->name('dayUp'
 Route::get('/dat/down', 'App\Http\Controllers\ShopController@dayDown')->name('dayDown');
 Route::get('/categories', 'App\Http\Controllers\CategoryController@getCategoriess')->name('getCategoriess');
 Route::get('/orders', 'App\Http\Controllers\OrderController@orders')->name('orders');
+Route::get('/product/{slug}/detail', 'App\Http\Controllers\ProductController@product_detail')->name('product_detail');
+
 
 
 

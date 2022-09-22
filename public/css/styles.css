@@ -84,3 +84,9 @@ a {
     vertical-align: top;
     margin-left: -10px;
 }
+
+.flex {
+    display: flex;
+    /* justify-content: space-evenly; */
+    flex-wrap: wrap;
+}

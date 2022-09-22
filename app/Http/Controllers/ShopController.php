@@ -51,7 +51,7 @@ class ShopController extends Controller
             ]);
         }
         else {
-            return view('content.products', [
+            return view('content.all_products', [
             'categories' => $categories,
             'products' => $products
         ]);

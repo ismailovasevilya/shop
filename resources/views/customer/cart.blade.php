@@ -2,7 +2,13 @@
 
 
 @section('content')
-    @if($cart_order==0 || count($order_items) == 0)
+    {{-- @if($cart_order==0 )
+    <div class="orders" style="margin: 200px">
+        <h3 class="text-center">
+            Your cart is empty
+        </h3>
+    </div> --}}
+    @if (count($order_items) == 0)
     <div class="orders" style="margin: 200px">
         <h3 class="text-center">
             Your cart is empty

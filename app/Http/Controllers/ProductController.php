@@ -111,4 +111,12 @@ class ProductController extends Controller
         return back()
                 ->with('msg', 'Item has edited successfully');
     }
+
+    public function product_detail($slug) {
+        $product = Product::where('slug', $slug)->first();
+        return view('content.product', [
+            'categories' => Category::all(),
+            'product' => $product
+        ]);
+    }
 }

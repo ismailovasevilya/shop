@@ -17,6 +17,7 @@ use Session;
 class OrderController extends Controller
 { 
     public function order($id, Request $req) {
+        //add to cart
         $product = Product::findOrFail($id);
         $cart = Cart::where('session_key',Session::getId())->first();
         if (count(OrderItem::where('session_key',Session::getId())->where('product_id', $id)->get()) == 0) {
@@ -42,6 +43,7 @@ class OrderController extends Controller
 
 
     public function orders() {
+        //open my order
         if (auth()->check()){
             
             $orders_item = OrderItem::where('user_email', auth()->user()->email)->get();
